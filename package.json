@@ -1,0 +1,31 @@
+{
+  "name": "guidance",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.33.0",
+    "@tanstack/react-query-next-experimental": "^5.0.0-alpha.80",
+    "@types/node": "20.5.7",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
+    "axios": "^1.5.0",
+    "eslint-config-next": "13.4.19",
+    "next": "13.4.19",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.34.1",
+    "eslint": "^8.48.0",
+    "eslint-plugin-perfectionist": "^1.5.1",
+    "prettier": "3.0.3"
+  }
+}
