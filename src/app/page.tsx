@@ -1,3 +1,4 @@
+import AuthBlock from "@/components/ui/auth-block/auth-block";
 import { Banner } from "@/components/ui";
 
 export default function Home() {
@@ -26,6 +27,8 @@ export default function Home() {
           typeEvent={"Начинающие вожатые"}
         />
       </div>
+      <AuthBlock isSignedIn={true} />
+      <AuthBlock isSignedIn={false} />
     </main>
   );
 }
