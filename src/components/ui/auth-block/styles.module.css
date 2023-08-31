@@ -1,0 +1,49 @@
+.infoNoAuth {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  background-color: #4fc54c;
+  border-radius: 15px;
+  color: #fff;
+}
+
+.infoAuth {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.infoText {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.visitorAuthLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 52px;
+  background: linear-gradient(139.24deg, #00a79d -2.91%, #293e91 152.1%);
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.orgAuthLink {
+  color: #d1d1d1;
+}
+
+.checkLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 120px;
+  background-color: #4fc54c;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
