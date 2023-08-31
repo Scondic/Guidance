@@ -1,0 +1,16 @@
+:root {
+  --color-white: #ffffff;
+  --color-dark: #1d2023;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f2f3f7;
+}

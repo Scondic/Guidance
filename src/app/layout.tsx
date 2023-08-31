@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 import React from "react";
 
-import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 
 import { QueryProvider } from "@/core/providers";
 
-import "./globals.css";
+import "@/assets/index.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Неделя вожатых",
@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className={inter.className}>
+      <body className={manrope.className}>
         <main>
           <QueryProvider>{children}</QueryProvider>
         </main>
