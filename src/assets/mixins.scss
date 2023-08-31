@@ -1,0 +1,13 @@
+@mixin font(
+  $font-family,
+  $size: 16px,
+  $weight: normal,
+  $height: 18px,
+  $style: normal
+) {
+  font-family: $font-family, sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $height;
+  font-style: $style;
+}
