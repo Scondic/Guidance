@@ -1,7 +1,11 @@
 import styles from './styles.module.css';
 
-export default function AuthBlock() {
-  const isSignedIn = false;
+type Props = {
+  isSignedIn: boolean;
+}
+
+export default function AuthBlock(props: Props) {
+  const { isSignedIn } = props;
 
   let AuthText;
   let AuthLink;
@@ -12,7 +16,10 @@ export default function AuthBlock() {
         <p className={styles.infoText}>Проверьте, что можете получать принимать сообщения от <a href="#">чат-бота группы</a> для получения уведомлений</p>
         <a className={styles.checkLink} href="#">Проверить</a>
       </div>);
-    AuthLink = <a className={styles.orgAuthLink} href="#">Выход</a>;
+    AuthLink = (
+      <div className={styles.checkLinkBox}>
+        <a className={styles.orgAuthLink} href="#">Выход</a>
+      </div>);
   } else {
     AuthText = (
       <div className={styles.infoNoAuth}>
@@ -20,7 +27,10 @@ export default function AuthBlock() {
         <a className={styles.visitorAuthLink} href="#">Войти через ВК</a>
       </div>
     );
-    AuthLink = <a className={styles.orgAuthLink} href="#">Вход для админов</a>;
+    AuthLink = (
+      <div className={styles.checkLinkBox}>
+        <a className={styles.orgAuthLink} href="#">Вход для админов</a>
+      </div>);
   }
 
   return (
