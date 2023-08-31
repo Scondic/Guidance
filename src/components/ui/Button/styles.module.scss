@@ -1,0 +1,64 @@
+.Button {
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 44px;
+  padding: 0 32px;
+
+  cursor: pointer;
+
+  color: var(--color-white, #fff);
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.Button__primary {
+  background-color: #007cff;
+
+  &:hover:not(.Button__loading) {
+    transition: background-color 0.3s;
+
+    background-color: #006fe5;
+  }
+}
+
+.Button__loading {
+  cursor: not-allowed;
+
+  &::before {
+    position: absolute;
+
+    display: block;
+    overflow: hidden;
+
+    width: 16px;
+    height: 16px;
+
+    content: " ";
+    animation: spin 2s infinite linear;
+
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='8.5' fill='none' stroke='%23FFFFFF' stroke-width='3' stroke-dasharray='45' stroke-linecap='round'/%3E%3C/svg%3E") center center no-repeat;
+  }
+}
+
+.Button__fluid {
+  width: 100%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
