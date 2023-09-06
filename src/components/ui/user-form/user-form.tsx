@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { Button } from "../Button/Button";
 import Input from '../input/input';
 import SelectElement from '../select/select';
-import { mockUser, optionsRoles, formElements, optionsSex } from "./static";
+import { mockUser, optionsRoles, formElements, optionsSex, optionsMeetings } from "./static";
 
 import styles from './styles.module.scss';
 
@@ -22,6 +22,7 @@ export default function UserForm() {
     birthDate: '',
     sex: 0,
     city: '',
+    meeting: [] as Option[],
     role: [] as string[],
   };
 
@@ -43,16 +44,21 @@ export default function UserForm() {
     console.log(data);
   };
 
-  const handleSelectChange = (selected: Option | readonly Option[]) => {
+  const handleSelectChange = (selected: Option | readonly Option[], field: string) => {
     let selectedData;
-    if (Array.isArray(selected)) {
-      selectedData = selected.map(option => option.value);
-      setData({ ...data, 'role': selectedData });
-    } else {
-      selectedData = selected;
-      setData({ ...data, 'sex': selectedData.value });
+    switch (field) {
+      case 'role':
+        setData({ ...data, 'role': selectedData });
+        break;
+      case 'sex':
+        selectedData = selected;
+        setData({ ...data, 'sex': selectedData.value });
+        break;
+      case 'meeting':
+        setData({ ...data, 'meeting': selectedData });
+        break;
     }
-  };
+  }
 
   return (
     <div>
@@ -62,7 +68,8 @@ export default function UserForm() {
         <SelectElement label={'Пол'} isMulti={false} isDisabled={false} handleChange={handleSelectChange} options={optionsSex} value={getSelectFormat(data.sex, optionsSex)} />
         <Input label={'Дата рождения'} elementData={formElements.birthDate} value={data.birthDate} handleOnChange={handleChange} />
         <Input label={'Город'} elementData={formElements.city} value={data.city} handleOnChange={handleChange} />
-        <SelectElement label={'Роль'} isMulti={true} isDisabled={false} handleChange={handleSelectChange} options={optionsRoles} />
+        <SelectElement label={'Мероприятия'} isMulti={true} isSearchable={true} isDisabled={false} handleChange={handleSelectChange} options={optionsMeetings} />
+        <SelectElement label={'Роль'} isMulti={true} isSearchable={true} isDisabled={false} handleChange={handleSelectChange} options={optionsRoles} />
 
         <Button>Сохранить</Button>
       </form>

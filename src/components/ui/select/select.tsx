@@ -13,14 +13,15 @@ type FormElementProps = {
   label: string | undefined,
   isDisabled?: boolean,
   isMulti?: boolean,
+  isSearchable?: boolean,
   options: readonly Option[],
   value?: string | number | undefined,
   // eslint-disable-next-line no-unused-vars
-  handleChange: (selected: Option | readonly Option[]) => void
+  handleChange: (selected: Option | readonly Option[], field: string) => void
 };
 
 export default function SelectElement(props: FormElementProps) {
-  const { label, isMulti, isDisabled, options, value, handleChange } = props;
+  const { label, isMulti, isDisabled, options, value, isSearchable, handleChange } = props;
 
   return (
     <>
@@ -31,6 +32,7 @@ export default function SelectElement(props: FormElementProps) {
         isDisabled={isDisabled}
         options={options}
         styles={customStyles}
+        isSearchable={isSearchable}
         defaultValue={value}
         onChange={handleChange}
       />

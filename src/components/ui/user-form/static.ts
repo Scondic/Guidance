@@ -55,4 +55,12 @@ const optionsSex = [
   { value: 2, label: 'муж' },
 ];
 
-export { mockUser, optionsRoles, formElements, optionsSex };
+const optionsMeetings = [
+  { value: 'Конференция', label: 'Конференция, г.Москва' },
+  { value: 'Воркшоп', label: 'Воркшоп, г.Екатеринбург' },
+  { value: 'Лекция', label: 'Лекция, г.Омск' },
+  { value: 'Брейншторм', label: 'Брейншторм, г.Сочи' },
+  { value: 'Игра', label: 'Игра, г.Калининград' },
+];
+
+export { mockUser, optionsRoles, formElements, optionsSex, optionsMeetings };
