@@ -1,5 +1,6 @@
-import AuthBlock from "@/components/ui/auth-block/auth-block";
 import { Banner } from "@/components/ui";
+import AuthBlock from "@/components/ui/auth-block/auth-block";
+import UserForm from "@/components/ui/user-form/user-form";
 
 export default function Home() {
   return (
@@ -26,9 +27,10 @@ export default function Home() {
           fullName={"Иванов Иван Иванович"}
           typeEvent={"Начинающие вожатые"}
         />
+        <AuthBlock isSignedIn={true} />
+        <AuthBlock isSignedIn={false} />
+        <UserForm />
       </div>
-      <AuthBlock isSignedIn={true} />
-      <AuthBlock isSignedIn={false} />
     </main>
   );
 }
