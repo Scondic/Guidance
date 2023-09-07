@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Banner } from "@/components/ui";
 import AuthBlock from "@/components/ui/auth-block/auth-block";
 import UserForm from "@/components/ui/user-form/user-form";
@@ -30,6 +32,7 @@ export default function Home() {
         <AuthBlock isSignedIn={true} />
         <AuthBlock isSignedIn={false} />
         <UserForm />
+        <Link href="/profile">Профиль</Link>
       </div>
     </main>
   );

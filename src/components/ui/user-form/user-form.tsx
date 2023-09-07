@@ -1,75 +1,43 @@
 'use client'
-import { useState, ChangeEvent, SyntheticEvent } from 'react';
+import { useForm, SubmitHandler } from "react-hook-form";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import dayjs from 'dayjs';
 
 import { Button } from "../Button/Button";
 import Input from '../input/input';
 import SelectElement from '../select/select';
-import { mockUser, optionsRoles, formElements, optionsSex, optionsMeetings } from "./static";
+import { schema } from './schema';
+import { mockUser, optionsRoles, optionsSex, optionsMeetings, requiredData } from "./static";
+import { FormDataType, OptionType } from './types';
 
 import styles from './styles.module.scss';
 
-type Option = {
-  value: string | number,
-  label: string
-}
-
 export default function UserForm() {
-  const requiredData = {
-    firstName: '',
-    lastName: '',
-    birthDate: '',
-    sex: 0,
-    city: '',
-    meeting: [] as Option[],
-    role: [] as string[],
-  };
-
   const date = dayjs(mockUser.birthDate).format('YYYY-MM-DD');
-  const vkData = { ...requiredData, ...mockUser, birthDate: date };
-
-  const [data, setData] = useState(vkData);
-
-  const getSelectFormat = (value: string | number, options: Option[]) => {
+  const getSelectFormat = (value: string | number, options: typeof Option[]) => {
     return options.find(option => option.value == value);
   }
+  const sexData = getSelectFormat(mockUser.sex, optionsSex);
 
-  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [evt.target.name]: evt.target.value });
+  const data = { ...requiredData, ...mockUser, birthDate: date, sex: sexData };
+
+  const { register, handleSubmit, control, formState: { errors } } = useForm<FormDataType>({ defaultValues: data, resolver: zodResolver(schema) });
+
+  const handleOnSubmit: SubmitHandler<FormDataType> = (submitData) => {
+    console.log(submitData);
   };
-
-  const handleSubmit = (evt: SyntheticEvent) => {
-    evt.preventDefault();
-    console.log(data);
-  };
-
-  const handleSelectChange = (selected: Option | readonly Option[], field: string) => {
-    let selectedData;
-    switch (field) {
-      case 'role':
-        setData({ ...data, 'role': selectedData });
-        break;
-      case 'sex':
-        selectedData = selected;
-        setData({ ...data, 'sex': selectedData.value });
-        break;
-      case 'meeting':
-        setData({ ...data, 'meeting': selectedData });
-        break;
-    }
-  }
 
   return (
     <div>
-      <form id="formElem" className={styles.form} onSubmit={handleSubmit}>
-        <Input label={'Имя'} elementData={formElements.firstName} value={data.firstName} handleOnChange={handleChange} />
-        <Input label={'Фамилия'} elementData={formElements.lastName} value={data.lastName} handleOnChange={handleChange} readOnly={true} />
-        <SelectElement label={'Пол'} isMulti={false} isDisabled={false} handleChange={handleSelectChange} options={optionsSex} value={getSelectFormat(data.sex, optionsSex)} />
-        <Input label={'Дата рождения'} elementData={formElements.birthDate} value={data.birthDate} handleOnChange={handleChange} />
-        <Input label={'Город'} elementData={formElements.city} value={data.city} handleOnChange={handleChange} />
-        <SelectElement label={'Мероприятия'} isMulti={true} isSearchable={true} isDisabled={false} handleChange={handleSelectChange} options={optionsMeetings} />
-        <SelectElement label={'Роль'} isMulti={true} isSearchable={true} isDisabled={false} handleChange={handleSelectChange} options={optionsRoles} />
+      <form id="formElem" className={styles.form} onSubmit={handleSubmit(handleOnSubmit)}>
+        <Input label={'Имя'} register={register('firstName')} error={errors.firstName?.message} />
+        <Input label={'Фамилия'} register={register('lastName')} error={errors.lastName?.message} />
+        <SelectElement label={'Пол'} name={'sex'} control={control} isMulti={false} options={optionsSex} defaultValue={data.sex} />
+        <Input label={'Дата рождения'} type="date" register={register('birthDate')} error={errors.birthDate?.message} />
+        <Input label={'Город'} register={register('city')} error={errors.city?.message} />
+        <SelectElement label={'Мероприятия'} name={'meeting'} control={control} isMulti={true} options={optionsMeetings} />
+        <SelectElement label={'Роль'} name={'role'} control={control} isMulti={true} options={optionsRoles} />
 
         <Button>Сохранить</Button>
       </form>

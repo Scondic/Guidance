@@ -1,8 +1,18 @@
-.select {
+.container {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
+}
+
+.select {
   border-radius: 5px;
 }
 
 .label {
   margin-bottom: 5px;
+}
+
+.error {
+  height: 15px;
+  color: red;
 }

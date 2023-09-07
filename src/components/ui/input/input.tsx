@@ -1,38 +1,31 @@
-import { ChangeEventHandler, ComponentProps } from 'react';
+import { ComponentProps } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 import styles from './styles.module.scss';
+import clsx from "clsx";
 
 type FormElementProps = {
   label: string | undefined,
-  elementData: {
-    name: string,
-    type?: string
-  },
-  value: string,
-  disabled?: boolean,
-  readOnly?: boolean,
-  handleOnChange: ChangeEventHandler<HTMLElement>;
+  // eslint-disable-next-line no-unused-vars
+  register: UseFormRegisterReturn,
+  error?: string
 } & ComponentProps<'input'>;
 
 export default function Input(props: FormElementProps) {
-  const { label, elementData, value, handleOnChange, disabled, readOnly, ...rest } = props;
+  const { label, register, error, ...rest } = props;
 
-  const elementProps = {
-    type: elementData.type,
-    id: elementData.name,
-    className: styles.input,
-    name: elementData.name,
-    value,
-    disabled,
-    readOnly,
-    onChange: handleOnChange,
-    ...rest
-  };
 
   return (
-    <>
-      {label && <label htmlFor={elementData.name} className={styles.label}>{label}</label>}
-      <input {...elementProps} />
-    </>
+    <div className={styles.container}>
+      {label && <label className={styles.label}>{label}</label>}
+      <input
+        className={clsx(styles.input, {
+          [styles.input__error]: !!error,
+        })}
+        {...register}
+        {...rest}
+      />
+      <div className={styles.error}>{error}</div>
+    </div>
   )
 }

@@ -2,31 +2,27 @@ const mockUser = {
   firstName: 'User Name',
   lastName: 'User Last Name',
   birthDate: '1.8.1990',
-  sex: 0,
+  sex: 2,
   city: 'City Name',
 };
 
 const formElements = {
   firstName: {
-    element: 'input',
     name: 'firstName',
     type: 'text'
   },
   lastName: {
-    element: 'input',
     name: 'lastName',
     type: 'text'
   },
   birthDate: {
-    element: 'input',
     name: 'birthDate',
     type: 'date'
   },
   city: {
-    element: 'select',
     name: 'city',
-    children: []
-  }
+    type: 'text'
+  },
 }
 
 const optionsRoles = [
@@ -63,4 +59,14 @@ const optionsMeetings = [
   { value: 'Игра', label: 'Игра, г.Калининград' },
 ];
 
-export { mockUser, optionsRoles, formElements, optionsSex, optionsMeetings };
+const requiredData = {
+  firstName: '',
+  lastName: '',
+  birthDate: '',
+  sex: {},
+  city: '',
+  // meeting: [],
+  // role: [],
+};
+
+export { mockUser, optionsRoles, formElements, optionsSex, optionsMeetings, requiredData };
