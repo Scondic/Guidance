@@ -1,19 +1,17 @@
 import { ComponentProps } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+
+import clsx from "clsx";
 
 import styles from './styles.module.scss';
-import clsx from "clsx";
 
 type FormElementProps = {
   label: string | undefined,
   // eslint-disable-next-line no-unused-vars
-  register: UseFormRegisterReturn,
   error?: string
 } & ComponentProps<'input'>;
 
 export default function Input(props: FormElementProps) {
-  const { label, register, error, ...rest } = props;
-
+  const { label, error, ...rest } = props;
 
   return (
     <div className={styles.container}>
@@ -22,7 +20,6 @@ export default function Input(props: FormElementProps) {
         className={clsx(styles.input, {
           [styles.input__error]: !!error,
         })}
-        {...register}
         {...rest}
       />
       <div className={styles.error}>{error}</div>

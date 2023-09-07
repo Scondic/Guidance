@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { Banner } from "@/components/ui";
 import AuthBlock from "@/components/ui/auth-block/auth-block";
-import UserForm from "@/components/ui/user-form/user-form";
+import Input from '@/components/ui/input/input';
 
 export default function Home() {
   return (
@@ -31,7 +31,9 @@ export default function Home() {
         />
         <AuthBlock isSignedIn={true} />
         <AuthBlock isSignedIn={false} />
-        <UserForm />
+        <Input
+          label='Имя'
+        />
         <Link href="/profile">Профиль</Link>
       </div>
     </main>
