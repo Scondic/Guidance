@@ -4,8 +4,10 @@ import React from "react";
 
 import { Manrope } from "next/font/google";
 
+import { Aside } from "@/components/ui/Aside/Aside";
 import { QueryProvider } from "@/core/providers";
 
+import styles from "./styles.module.scss";
 import "@/assets/index.scss";
 
 const manrope = Manrope({ subsets: ["latin"] });
@@ -23,9 +25,12 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={manrope.className}>
-        <main>
-          <QueryProvider>{children}</QueryProvider>
-        </main>
+        <QueryProvider>
+          <div className={styles.Container}>
+            {children}
+            <Aside />
+          </div>
+        </QueryProvider>
       </body>
     </html>
   );

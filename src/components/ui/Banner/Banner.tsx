@@ -15,7 +15,7 @@ export const Banner = (props: Props) => {
   const { subtitle, title, fullName, typeEvent, children } = props;
 
   return (
-    <div className={styles.Banner}>
+    <section className={styles.Banner}>
       <div className={styles.Banner__header}>
         {subtitle && <div className={styles.Banner__subtitle}>{subtitle}</div>}
         {title && <div className={styles.Banner__title}>{title}</div>}
@@ -39,6 +39,6 @@ export const Banner = (props: Props) => {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
