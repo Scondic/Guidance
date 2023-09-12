@@ -12,9 +12,10 @@ type Props = {
   isMulti?: boolean;
   isSearchable?: boolean;
   description?: string;
-  value?: any;
+  value?: string | SelectOption[];
   options: SelectOption[];
-  onChange: any;
+  onChange: (newValue: SelectOption | SelectOption[]) => void; // Удалите "newValue" из объявления
+  defaultValue?: SelectOption[];
 };
 
 export default function SelectField(props: Props) {
@@ -27,6 +28,7 @@ export default function SelectField(props: Props) {
     value,
     options,
     onChange,
+    defaultValue,
   } = props;
 
   return (
@@ -38,6 +40,7 @@ export default function SelectField(props: Props) {
         className={styles.select}
         options={options}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         value={props.options.find((c) => c.value === value)}
         onChange={(e: any) =>
           e.value ? onChange(e.value) : onChange(e.map((c: any) => c.value))
