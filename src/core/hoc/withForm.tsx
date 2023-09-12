@@ -25,16 +25,13 @@ export type WithFormProps = {
 };
 
 const withForm =
-  <T extends Record<any, any>>(
-    WrappedComponent: ElementType,
-    resolver: z.infer<any>,
-  ) =>
+  (WrappedComponent: ElementType, resolver: z.infer<z.Schema<any, any>>) =>
   (props: WithFormProps) => {
     const {
       control,
       handleSubmit,
       formState: { errors },
-    } = useForm<T>({
+    } = useForm({
       resolver: zodResolver(resolver),
     });
 

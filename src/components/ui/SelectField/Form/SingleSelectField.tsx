@@ -1,39 +1,38 @@
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Control, FieldValues, useController } from "react-hook-form";
 
 import type { SelectOption } from "@/components/ui/SelectField/SelectField";
 
 import SelectField from "@/components/ui/SelectField/SelectField";
 
-type MultipleSelectFieldProps<T> = {
-  value?: any;
-  controller: typeof Controller;
+type SingleSelectFieldProps<T> = {
+  value?: string;
   control: Control<FieldValues, T>;
-  selectName: string;
+  selectName: keyof T;
   selectLabel: string;
   selectOptions: SelectOption[];
 };
 
-const MultipleSelectField = <T extends Record<string, any> = {}>(
-  props: MultipleSelectFieldProps<T>,
+const SingleSelectField = <T extends Record<string, any> = {}>(
+  props: SingleSelectFieldProps<T>,
 ) => {
-  const Controller = props.controller;
+  const {
+    field,
+    fieldState: { error },
+  } = useController({
+    name: props.selectName as string,
+    control: props.control,
+    defaultValue: props.value,
+  });
 
   return (
-    <Controller
-      name={props.selectName}
-      control={props.control}
-      render={({ field: { value, ...restField }, fieldState: { error } }) => (
-        <SelectField
-          description={error?.message}
-          label={props.selectLabel}
-          options={props.selectOptions}
-          placeholder={props.selectLabel}
-          value={value}
-          {...restField}
-        />
-      )}
+    <SelectField
+      label={props.selectLabel}
+      options={props.selectOptions}
+      placeholder={props.selectLabel}
+      description={error?.message}
+      {...field}
     />
   );
 };
 
-export default MultipleSelectField;
+export default SingleSelectField;
