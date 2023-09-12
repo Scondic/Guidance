@@ -4,22 +4,22 @@ import type { SelectOption } from "@/components/ui/SelectField/SelectField";
 
 import SelectField from "@/components/ui/SelectField/SelectField";
 
-type MultipleSelectFieldProps<T> = {
+type SingleSelectFieldProps<T> = {
   value?: string;
   control: Control<FieldValues, T>;
-  selectName: string;
+  selectName: keyof T;
   selectLabel: string;
   selectOptions: SelectOption[];
 };
 
 const SingleSelectField = <T extends Record<string, any> = {}>(
-  props: MultipleSelectFieldProps<T>,
+  props: SingleSelectFieldProps<T>,
 ) => {
   const {
     field,
     fieldState: { error },
   } = useController({
-    name: props.selectName,
+    name: props.selectName as string,
     control: props.control,
     defaultValue: props.value,
   });

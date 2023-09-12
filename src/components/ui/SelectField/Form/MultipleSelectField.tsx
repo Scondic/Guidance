@@ -5,20 +5,22 @@ import type { SelectOption } from "@/components/ui/SelectField/SelectField";
 import SelectField from "@/components/ui/SelectField/SelectField";
 import { filterOptions } from "@/core/utils";
 
-type MultipleSelectFieldProps = {
+type MultipleSelectFieldProps<T> = {
   value?: string[];
-  control: Control<FieldValues, any>;
-  selectName: string;
+  control: Control<FieldValues, T>;
+  selectName: keyof T;
   selectLabel: string;
   selectOptions: SelectOption[];
 };
 
-const MultipleSelectField = (props: MultipleSelectFieldProps) => {
+const MultipleSelectField = <T extends Record<string, any> = {}>(
+  props: MultipleSelectFieldProps<T>,
+) => {
   const {
     field,
     fieldState: { error },
   } = useController({
-    name: props.selectName,
+    name: props.selectName as string,
     control: props.control,
     defaultValue: props.value,
   });

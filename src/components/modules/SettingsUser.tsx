@@ -7,6 +7,11 @@ import {
 } from "@/components/ui/SelectField";
 import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
 
+type FormType = {
+  sex: string;
+  interests: string[];
+};
+
 const SettingsUser = (props: WrappedComponentProps) => {
   const SingleSelectValue = "male";
   const MultipleSelectValue = ["print", "broke"];
@@ -24,14 +29,14 @@ const SettingsUser = (props: WrappedComponentProps) => {
 
   return (
     <>
-      <SingleSelectField
+      <SingleSelectField<FormType>
         control={props.control}
         value={SingleSelectValue}
         selectName={"sex"}
         selectLabel={"Введите Ваш пол"}
         selectOptions={sexOptions}
       />
-      <MultipleSelectField
+      <MultipleSelectField<FormType>
         control={props.control}
         value={MultipleSelectValue}
         selectName={"interests"}
@@ -42,4 +47,4 @@ const SettingsUser = (props: WrappedComponentProps) => {
   );
 };
 
-export default withForm<{ sex: string }>(SettingsUser, SettingUserResolver);
+export default withForm(SettingsUser, SettingUserResolver);
