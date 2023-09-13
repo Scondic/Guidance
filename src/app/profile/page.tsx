@@ -1,9 +1,13 @@
-import styles from './stules.module.scss';
+'use client'
+import { FieldValues } from "react-hook-form";
+
+import UserForm from "@/feature/UserForm/UserForm";
 
 export default function UserPage() {
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Профиль участника</h1>
-    </div>
-  )
+  const formSubmittedCallback = (formData: FieldValues) => {
+    // eslint-disable-next-line no-console
+    console.log(formData);
+  };
+
+  return <UserForm formSubmittedCallback={formSubmittedCallback} />
 }

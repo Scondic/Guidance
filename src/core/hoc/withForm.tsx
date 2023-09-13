@@ -6,6 +6,7 @@ import {
   Controller,
   FieldErrors,
   FieldValues,
+  UseFormRegisterReturn,
   useForm,
 } from "react-hook-form";
 
@@ -18,37 +19,44 @@ export type WrappedComponentProps = {
   errors: FieldErrors<FieldValues>;
   controller: typeof Controller;
   control: Control<FieldValues, any>;
+  register?: UseFormRegisterReturn;
 };
 
 export type WithFormProps = {
+  // eslint-disable-next-line no-unused-vars
   formSubmittedCallback: (data: FieldValues) => void;
 };
 
 const withForm =
-  (WrappedComponent: ElementType, resolver: z.infer<z.Schema<any, any>>) =>
-  (props: WithFormProps) => {
-    const {
-      control,
-      handleSubmit,
-      formState: { errors },
-    } = useForm({
-      resolver: zodResolver(resolver),
-    });
+  <T extends Record<any, any>>(
+    WrappedComponent: ElementType,
+    resolver: z.infer<any>,
+  ) =>
+    // eslint-disable-next-line react/display-name
+    (props: WithFormProps) => {
+      const {
+        register,
+        control,
+        handleSubmit,
+        formState: { errors },
+      } = useForm<T>({
+        resolver: zodResolver(resolver),
+      });
 
-    const onSubmit = async (data: FieldValues) => {
-      props.formSubmittedCallback(data);
+      const onSubmit = async (data: FieldValues) => {
+        props.formSubmittedCallback(data);
+      };
+
+      return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <WrappedComponent
+            errors={errors}
+            control={control}
+            register={register}
+          />
+          <Button type={"submit"}>Submit</Button>
+        </form>
+      );
     };
-
-    return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <WrappedComponent
-          errors={errors}
-          controller={Controller}
-          control={control}
-        />
-        <Button type={"submit"}>Submit</Button>
-      </form>
-    );
-  };
 
 export default withForm;
