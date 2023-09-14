@@ -12,7 +12,7 @@ type FormType = {
   interests: string[];
 };
 
-const SettingsUser = (props: WrappedComponentProps) => {
+const SettingsUser = (props: WrappedComponentProps<FormType>) => {
   const SingleSelectValue = "male";
   const MultipleSelectValue = ["print", "broke"];
 
@@ -29,16 +29,16 @@ const SettingsUser = (props: WrappedComponentProps) => {
 
   return (
     <>
-      <SingleSelectField<FormType>
+      <SingleSelectField
         control={props.control}
-        value={SingleSelectValue}
+        defaultValue={SingleSelectValue}
         selectName={"sex"}
         selectLabel={"Введите Ваш пол"}
         selectOptions={sexOptions}
       />
-      <MultipleSelectField<FormType>
+      <MultipleSelectField
         control={props.control}
-        value={MultipleSelectValue}
+        defaultValue={MultipleSelectValue}
         selectName={"interests"}
         selectLabel={"Введите Ваши интересы"}
         selectOptions={interestsOptions}
@@ -47,4 +47,4 @@ const SettingsUser = (props: WrappedComponentProps) => {
   );
 };
 
-export default withForm(SettingsUser, SettingUserResolver);
+export default withForm<FormType>(SettingsUser, SettingUserResolver);

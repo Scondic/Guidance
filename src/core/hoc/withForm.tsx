@@ -14,24 +14,29 @@ import { z } from "zod";
 
 import { Button } from "@/components/ui";
 
-export type WrappedComponentProps = {
-  errors: FieldErrors<FieldValues>;
+export interface WrappedComponentProps<
+  TFieldsValues extends FieldValues = FieldValues,
+> {
   controller: typeof Controller;
-  control: Control<FieldValues, any>;
-};
+  control: Control<TFieldsValues>;
+  errors: FieldErrors<FieldValues>;
+}
 
 export type WithFormProps = {
   formSubmittedCallback: (data: FieldValues) => void;
 };
 
 const withForm =
-  (WrappedComponent: ElementType, resolver: z.infer<z.Schema<any, any>>) =>
+  <FormFields extends FieldValues = FieldValues>(
+    WrappedComponent: ElementType,
+    resolver: z.infer<z.Schema<any, any>>,
+  ) =>
   (props: WithFormProps) => {
     const {
       control,
       handleSubmit,
       formState: { errors },
-    } = useForm({
+    } = useForm<FormFields>({
       resolver: zodResolver(resolver),
     });
 

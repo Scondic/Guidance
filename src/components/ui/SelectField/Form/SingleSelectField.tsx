@@ -1,27 +1,39 @@
-import { Control, FieldValues, useController } from "react-hook-form";
+import {
+  Control,
+  FieldPath,
+  FieldPathValue,
+  FieldValues,
+  useController,
+} from "react-hook-form";
 
 import type { SelectOption } from "@/components/ui/SelectField/SelectField";
 
 import SelectField from "@/components/ui/SelectField/SelectField";
 
-type SingleSelectFieldProps<T> = {
-  value?: string;
-  control: Control<FieldValues, T>;
-  selectName: keyof T;
+interface SingleSelectFieldProps<
+  TFieldsValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>,
+> {
+  control: Control<TFieldsValues>;
+  selectName: TFieldName;
   selectLabel: string;
   selectOptions: SelectOption[];
-};
+  defaultValue?: FieldPathValue<TFieldsValues, TFieldName>;
+}
 
-const SingleSelectField = <T extends Record<string, any> = {}>(
-  props: SingleSelectFieldProps<T>,
+const SingleSelectField = <
+  TFieldsValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>,
+>(
+  props: SingleSelectFieldProps<TFieldsValues, TFieldName>,
 ) => {
   const {
     field,
     fieldState: { error },
   } = useController({
-    name: props.selectName as string,
+    name: props.selectName,
     control: props.control,
-    defaultValue: props.value,
+    defaultValue: props.defaultValue,
   });
 
   return (
