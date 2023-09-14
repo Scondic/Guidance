@@ -23,6 +23,7 @@ export interface WrappedComponentProps<
 }
 
 export type WithFormProps = {
+  /* eslint-disable no-unused-vars */
   formSubmittedCallback: (data: FieldValues) => void;
 };
 
@@ -31,6 +32,7 @@ const withForm =
     WrappedComponent: ElementType,
     resolver: z.infer<z.Schema<any, any>>,
   ) =>
+  /* eslint-disable react/display-name */
   (props: WithFormProps) => {
     const {
       control,
