@@ -1,4 +1,4 @@
-import Input from '@/components/ui/Input/Input';
+import InputField from "@/components/ui/Input/Form/InputField";
 import {
   MultipleSelectField,
   SingleSelectField,
@@ -11,20 +11,18 @@ import { mockUser } from './static';
 
 
 export function UserForm(props: WrappedComponentProps) {
-  console.log(props.errors);
-
   return (
     <>
-      <Input
-        label='Имя'
-        register={props.register('firstName')}
-        error={props.errors.firstName?.message}
+      <InputField
+        control={props.control}
+        inputName={"firstName"}
+        inputLabel={"Имя"}
         defaultValue={mockUser.firstName}
       />
-      <Input
-        label='Фамилия'
-        register={props.register('lastName')}
-        error={props.errors.lastName?.message}
+      <InputField
+        control={props.control}
+        inputName={"lastName"}
+        inputLabel={"Фамилия"}
         defaultValue={mockUser.lastName}
       />
       <SingleSelectField
@@ -35,19 +33,19 @@ export function UserForm(props: WrappedComponentProps) {
           { value: "2", label: "Мужской" },
           { value: "1", label: "Женский" },
         ]}
-        value={mockUser.sex}
+        defaultValue={mockUser.sex}
       />
-      <Input
-        label='Дата рождения'
-        type='date'
-        register={props.register('birthDate')}
-        error={props.errors.date?.message}
+      <InputField
+        control={props.control}
+        inputName={"birthdate"}
+        inputLabel={"Дата рождения"}
+        inputType={"date"}
         defaultValue={mockUser.birthDate}
       />
-      <Input
-        label='Город'
-        register={props.register('city')}
-        error={props.errors.city?.message}
+      <InputField
+        control={props.control}
+        inputName={"city"}
+        inputLabel={"Город проживания"}
         defaultValue={mockUser.city}
       />
       <MultipleSelectField
@@ -55,14 +53,14 @@ export function UserForm(props: WrappedComponentProps) {
         selectName={"roles"}
         selectLabel={"Роль"}
         selectOptions={optionsRoles}
-        value={mockUser.roles}
+        defaultValue={mockUser.roles}
       />
       <MultipleSelectField
         control={props.control}
         selectName={"meetings"}
         selectLabel={"Мероприятия"}
         selectOptions={optionsMeetings}
-        value={mockUser.meetings}
+        defaultValue={mockUser.meetings}
       />
     </>)
 }

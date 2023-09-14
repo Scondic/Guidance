@@ -1,18 +1,30 @@
-import { ComponentProps } from 'react';
-
 import clsx from "clsx";
 
 import styles from './styles.module.scss';
 
-type FormElementProps = {
-  label: string | undefined;
-  // eslint-disable-next-line no-unused-vars
+type Props = {
+  label?: string;
+  placeholder?: string;
+  isMulti?: boolean;
+  isSearchable?: boolean;
   error?: string;
-  register: any;
-} & ComponentProps<'input'>;
+  value?: string;
+  type?: string;
+  // eslint-disable-next-line no-unused-vars
+  onChange: (newValue: string) => void;
+  defaultValue?: string;
+};
 
-export default function Input(props: FormElementProps) {
-  const { label, error, register, ...rest } = props;
+export default function Input(props: Props) {
+  const {
+    label,
+    placeholder,
+    error,
+    value,
+    type = 'text',
+    onChange,
+    defaultValue,
+  } = props;
 
   return (
     <div className={styles.container}>
@@ -21,9 +33,11 @@ export default function Input(props: FormElementProps) {
         className={clsx(styles.input, {
           [styles.input__error]: !!error,
         })}
-        placeholder={label}
-        {...register}
-        {...rest}
+        type={type}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        value={value}
+        onChange={onChange}
       />
       <div className={styles.error}>{error}</div>
     </div>

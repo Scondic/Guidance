@@ -3,10 +3,8 @@
 import { ElementType } from "react";
 import {
   Control,
-  Controller,
   FieldErrors,
   FieldValues,
-  UseFormRegisterReturn,
   useForm,
 } from "react-hook-form";
 
@@ -15,12 +13,12 @@ import { z } from "zod";
 
 import { Button } from "@/components/ui";
 
-export type WrappedComponentProps = {
+export interface WrappedComponentProps<
+  TFieldsValues extends FieldValues = FieldValues,
+> {
+  control: Control<TFieldsValues>;
   errors: FieldErrors<FieldValues>;
-  controller: typeof Controller;
-  control: Control<FieldValues, any>;
-  register?: UseFormRegisterReturn;
-};
+}
 
 export type WithFormProps = {
   // eslint-disable-next-line no-unused-vars
@@ -28,18 +26,17 @@ export type WithFormProps = {
 };
 
 const withForm =
-  <T extends Record<any, any>>(
+  <FormFields extends FieldValues = FieldValues>(
     WrappedComponent: ElementType,
-    resolver: z.infer<any>,
+    resolver: z.infer<z.Schema<any, any>>,
   ) =>
     // eslint-disable-next-line react/display-name
     (props: WithFormProps) => {
       const {
-        register,
         control,
         handleSubmit,
         formState: { errors },
-      } = useForm<T>({
+      } = useForm<FormFields>({
         resolver: zodResolver(resolver),
       });
 
@@ -52,7 +49,6 @@ const withForm =
           <WrappedComponent
             errors={errors}
             control={control}
-            register={register}
           />
           <Button type={"submit"}>Submit</Button>
         </form>
