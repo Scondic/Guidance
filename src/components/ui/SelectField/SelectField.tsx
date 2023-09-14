@@ -14,6 +14,7 @@ type Props = {
   description?: string;
   value?: string | SelectOption[];
   options: SelectOption[];
+  /* eslint-disable no-unused-vars */
   onChange: (newValue: SelectOption | SelectOption[]) => void; // Удалите "newValue" из объявления
   defaultValue?: SelectOption[];
 };

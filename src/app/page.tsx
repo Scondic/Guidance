@@ -1,11 +1,11 @@
 "use client";
 
 import { FieldValues } from "react-hook-form";
+
 import Link from 'next/link';
 
 import SettingsUser from "@/components/modules/SettingsUser";
 import { Banner } from "@/components/ui";
-import AuthBlock from "@/components/ui/auth-block/auth-block";
 import Input from '@/components/ui/input/input';
 
 import styles from "./styles.module.scss";
