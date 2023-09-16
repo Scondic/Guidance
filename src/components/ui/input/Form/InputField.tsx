@@ -1,3 +1,4 @@
+import { ComponentProps } from "react";
 import {
   Control,
   FieldPath,
@@ -15,7 +16,7 @@ interface InputFieldProps<
   control: Control<TFieldsValues>;
   inputName: TFieldName;
   inputLabel: string;
-  inputType?: string;
+  inputType?: ComponentProps<"input">["type"];
   defaultValue?: FieldPathValue<TFieldsValues, TFieldName>;
 }
 
