@@ -28,7 +28,7 @@ export function UserForm(props: WrappedComponentProps) {
       <SingleSelectField
         control={props.control}
         selectName={"sex"}
-        selectLabel={"Введите Ваш пол"}
+        selectLabel={"Пол"}
         selectOptions={[
           { value: "2", label: "Мужской" },
           { value: "1", label: "Женский" },
@@ -37,7 +37,7 @@ export function UserForm(props: WrappedComponentProps) {
       />
       <InputField
         control={props.control}
-        inputName={"birthdate"}
+        inputName={"birthDate"}
         inputLabel={"Дата рождения"}
         inputType={"date"}
         defaultValue={mockUser.birthDate}
