@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  frontend-application:
+    # Перенести сборку в Docker Registry
+    # image: ${FRONTEND_APPLICATION__IMAGE_NAME}:${FRONTEND_APPLICATION__IMAGE_TAG} 
+    container_name: ${FRONTEND_APPLICATION__IMAGE_NAME}
+    build: 
+      context: ../
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./configs/nginx/conf.d:/etc/nginx/conf.d:ro
+    
