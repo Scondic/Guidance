@@ -1,31 +1,21 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .input {
   padding: 20px;
-  border: 1px solid transparent;
+  border: 1px solid rgb(204, 204, 204);
   border-radius: 5px;
 
-  font-family: Manrope, sans-serif;
-  font-size: 16px;
-  font-weight: 500;
+  font: inherit;
   line-height: 24px;
 
   &:focus {
     outline: none;
-    border: 1px solid grey
-  }
-}
-
-.input__error {
-  border: 1px solid red;
-
-    &:focus {
-    outline: none;
-    border: 1px solid red
+    border: 1px solid #2684FF;
+    box-shadow: 0 0 0 1px #2684FF;
   }
 }
 

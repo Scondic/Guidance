@@ -6,7 +6,8 @@ import Link from 'next/link';
 
 import SettingsUser from "@/components/modules/SettingsUser";
 import { Banner } from "@/components/ui";
-import Input from '@/components/ui/input/input';
+
+import Input from '@/components/ui/Input/Input';
 
 import styles from "./styles.module.scss";
 
@@ -31,7 +32,7 @@ export default function Home() {
         typeEvent={"Начинающие вожатые"}
       />
       <SettingsUser formSubmittedCallback={formSubmittedCallback} />
-      <Input label='Имя'/>
+      <Input label='Имя' />
       <Link href="/profile">Профиль</Link>
     </main>
   );

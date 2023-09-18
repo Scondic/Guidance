@@ -14,8 +14,8 @@ type Props = {
   description?: string;
   value?: string | SelectOption[];
   options: SelectOption[];
-  /* eslint-disable no-unused-vars */
-  onChange: (newValue: SelectOption | SelectOption[]) => void; // Удалите "newValue" из объявления
+  // eslint-disable-next-line no-unused-vars
+  onChange: (newValue: SelectOption | SelectOption[]) => void;
   defaultValue?: SelectOption[];
 };
 
@@ -33,12 +33,17 @@ export default function SelectField(props: Props) {
   } = props;
 
   return (
-    <div>
+    <div className={styles.container}>
       {label && <label>{label}</label>}
       <SelectNative
+        styles={{
+          control: (baseStyles) => ({
+            ...baseStyles,
+            padding: '20px',
+          }),
+        }}
         isMulti={isMulti}
         isSearchable={isSearchable}
-        className={styles.select}
         options={options}
         placeholder={placeholder}
         defaultValue={defaultValue}
@@ -47,7 +52,7 @@ export default function SelectField(props: Props) {
           e.value ? onChange(e.value) : onChange(e.map((c: any) => c.value))
         }
       />
-      {description && <div>{description}</div>}
+      <div className={styles.error}>{description}</div>
     </div>
   );
 }
