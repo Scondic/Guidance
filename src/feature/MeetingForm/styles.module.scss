@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.containerLink {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}

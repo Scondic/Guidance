@@ -9,6 +9,7 @@ import {
 
 import Input from "../Input";
 
+
 interface InputFieldProps<
   TFieldsValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>,
@@ -17,8 +18,12 @@ interface InputFieldProps<
   inputName: TFieldName;
   inputLabel: string;
   inputType?: ComponentProps<"input">["type"];
+  readOnly?: boolean;
+  type?: string;
   defaultValue?: FieldPathValue<TFieldsValues, TFieldName>;
+  handleChange?: () => void;
 }
+
 
 const InputField = <TFieldsValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>>(
@@ -37,6 +42,7 @@ const InputField = <TFieldsValues extends FieldValues = FieldValues,
       label={props.inputLabel}
       type={props.inputType}
       placeholder={props.inputLabel}
+      readOnly={props.readOnly}
       error={error?.message}
       {...field}
     />
