@@ -7,8 +7,7 @@ import {
   useController,
 } from "react-hook-form";
 
-import Input from "../Input";
-
+import Input from "@/components/ui/Input/input";
 
 interface InputFieldProps<
   TFieldsValues extends FieldValues = FieldValues,
@@ -24,10 +23,12 @@ interface InputFieldProps<
   handleChange?: () => void;
 }
 
-
-const InputField = <TFieldsValues extends FieldValues = FieldValues,
-  TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>>(
-    props: InputFieldProps<TFieldsValues, TFieldName>) => {
+const InputField = <
+  TFieldsValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>,
+>(
+  props: InputFieldProps<TFieldsValues, TFieldName>,
+) => {
   const {
     field,
     fieldState: { error },
@@ -46,6 +47,6 @@ const InputField = <TFieldsValues extends FieldValues = FieldValues,
       error={error?.message}
       {...field}
     />
-  )
-}
+  );
+};
 export default InputField;
