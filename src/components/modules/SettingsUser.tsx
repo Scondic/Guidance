@@ -1,6 +1,7 @@
 "use client";
 
 import { SettingUserResolver } from "@/components/modules/static";
+import InputField from "@/components/ui/Input/Form/InputField";
 import {
   MultipleSelectField,
   SingleSelectField,
@@ -10,6 +11,7 @@ import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
 type FormType = {
   sex: string;
   interests: string[];
+  firstName: string;
 };
 
 const SettingsUser = (props: WrappedComponentProps<FormType>) => {
@@ -42,6 +44,12 @@ const SettingsUser = (props: WrappedComponentProps<FormType>) => {
         selectName={"interests"}
         selectLabel={"Введите Ваши интересы"}
         selectOptions={interestsOptions}
+      />
+      <InputField
+        control={props.control}
+        inputName={"firstName"}
+        inputLabel={"Имя"}
+        defaultValue={""}
       />
     </>
   );

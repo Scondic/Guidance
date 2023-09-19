@@ -29,6 +29,8 @@ export default function Input(props: Props) {
       <input
         className={clsx(styles.input, {
           [styles.input__error]: !!error,
+          [styles.inputCheckbox]: props.type == 'checkbox',
+          [styles.readOnly]: props.readOnly,
         })}
         defaultValue={defaultValue}
         onChange={onChange}

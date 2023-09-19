@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import styles from './styles.module.css';
 
 type Props = {
@@ -24,7 +26,7 @@ export default function AuthBlock(props: Props) {
     AuthText = (
       <div className={styles.infoNoAuth}>
         <p className={styles.infoText}>Чтобы зарегистрироваться на мероприятия необходимо авторизоваться через ВКонтакте</p>
-        <a className={styles.visitorAuthLink} href="#">Войти через ВК</a>
+        <Link className={styles.visitorAuthLink} href="/profile">Войти через ВК</Link>
       </div>
     );
     AuthLink = (
@@ -34,7 +36,7 @@ export default function AuthBlock(props: Props) {
   }
 
   return (
-    <article>
+    <article style={{ width: 'min-content' }}>
       {AuthText}
       {AuthLink}
     </article>
