@@ -2,10 +2,19 @@
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
-  "plugins": ["perfectionist"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["perfectionist", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/prefer-interface": "off",
+    "no-console": "off",
     "perfectionist/sort-imports": [
       "warn",
       {
