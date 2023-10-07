@@ -21,17 +21,6 @@
   margin-bottom: 20px;
 }
 
-.visitorAuthLink {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 52px;
-  background: linear-gradient(139.24deg, #00a79d -2.91%, #293e91 152.1%);
-  color: #fff;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
 .orgAuthLink {
   color: #d1d1d1;
 }

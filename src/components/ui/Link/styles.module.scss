@@ -1,0 +1,25 @@
+.Link {
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 300px;
+
+  height: 44px;
+  padding: 0 32px;
+
+  cursor: pointer;
+
+  color: var(--color-white, #fff);
+  background-color: #007cff;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}

@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.input {
+  padding: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+
+  font: inherit;
+  line-height: 24px;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #2684FF;
+    box-shadow: 0 0 0 1px #2684FF;
+  }
+
+  &:read-only:focus {
+    outline: none;
+    border: 1px solid #cccccc;
+    box-shadow: none;
+  }
+}
+
+.inputCheckbox {
+  appearance: none;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+
+  &:checked::before {
+    content: '';
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #cccccc;
+    top: 12px;
+    left: 12px;
+    border-radius: 2px;
+  }
+}
+
+.label {
+  margin-bottom: 5px;
+}
+
+.error {
+  height: 15px;
+  color: red;
+}
+
+.readOnly {
+  background-color: #f8f8f8;
+  color: #cccccc;
+}
