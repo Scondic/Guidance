@@ -19,11 +19,21 @@ export interface Company {
 
 export interface User {
   id: number;
-  name: string;
+  password: string;
+  last_login: string;
+  is_superuser: boolean;
   username: string;
+  first_name: string;
+  last_name: string;
   email: string;
-  address: Address;
-  phone: string;
-  website: string;
-  company: Company;
+  is_staff: boolean;
+  is_active: boolean;
+  date_joined: string;
+  vk_id: string;
+  sex: string;
+  city: string;
+  bdate: string;
+  region: string;
+  groups: string[];
+  user_permissions: string[];
 }

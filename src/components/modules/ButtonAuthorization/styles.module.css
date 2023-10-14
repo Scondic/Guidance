@@ -1,10 +1,8 @@
 .authorization {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 52px;
-  background-color: #007cff;;
+  background-color: #007cff;
   color: #fff;
   border-radius: 5px;
-  text-decoration: none;
+  width: 100%;
+  border: none;
 }

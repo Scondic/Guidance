@@ -42,12 +42,7 @@
           }
         },
         "newlines-between": "always",
-        "internal-pattern": [
-          "@/components/**",
-          "@/core/**",
-          "@/hooks/**",
-          "@/services/**"
-        ],
+        "internal-pattern": ["@/components/**", "@/core/**", "@/hooks/**", "@/services/**"],
         "read-tsconfig": false
       }
     ]

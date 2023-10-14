@@ -24,4 +24,12 @@ export class UserRepository implements UsersRepositoryInterface {
       throw new Error(`Произошла ошибка: ${error}`);
     }
   }
+
+  async getCurrentProfile(): Promise<User> {
+    try {
+      return await this.userService.getCurrentProfile();
+    } catch (error) {
+      throw new Error(`Произошла ошибка: ${error}`);
+    }
+  }
 }

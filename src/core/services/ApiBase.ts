@@ -10,19 +10,21 @@ export abstract class ApiBase<T> {
   }
 
   async getAll(): Promise<T[]> {
-    const { data }: AxiosResponse = await this.axiosInstance.get(this.baseUrl);
+    const { data }: AxiosResponse<T[]> = await this.axiosInstance.get(
+      this.baseUrl,
+    );
     return data;
   }
 
   async getById(id: number): Promise<T> {
-    const { data }: AxiosResponse = await this.axiosInstance.get(
+    const { data }: AxiosResponse<T> = await this.axiosInstance.get(
       `${this.baseUrl}/${id}`,
     );
     return data;
   }
 
   async create(entity: T): Promise<T> {
-    const { data }: AxiosResponse = await this.axiosInstance.post(
+    const { data }: AxiosResponse<T> = await this.axiosInstance.post(
       this.baseUrl,
       entity,
     );
@@ -30,7 +32,7 @@ export abstract class ApiBase<T> {
   }
 
   async update(entity: T): Promise<T> {
-    const { data }: AxiosResponse = await this.axiosInstance.put(
+    const { data }: AxiosResponse<T> = await this.axiosInstance.put(
       `${this.baseUrl}/${(entity as any).id}`,
       entity,
     );
