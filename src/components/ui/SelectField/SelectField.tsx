@@ -2,6 +2,8 @@
 
 import { default as SelectNative } from "react-select";
 
+import { ChipStyles, ControlStyles } from "./static";
+
 import styles from "./styles.module.scss";
 
 export type SelectOption = { value: string; label: string };
@@ -14,7 +16,6 @@ type Props = {
   description?: string;
   value?: string | SelectOption[];
   options: SelectOption[];
-  // eslint-disable-next-line no-unused-vars
   onChange: (newValue: SelectOption | SelectOption[]) => void;
   defaultValue?: SelectOption[];
 };
@@ -34,13 +35,17 @@ export default function SelectField(props: Props) {
 
   return (
     <div className={styles.container}>
-      {label && <label>{label}</label>}
+      {label && <label className={styles.label}>{label}</label>}
       <SelectNative
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
-            padding: '20px',
+            ...ControlStyles
           }),
+          multiValueLabel: (baseStyles) => ({
+            ...baseStyles,
+            ...ChipStyles
+          })
         }}
         isMulti={isMulti}
         isSearchable={isSearchable}
@@ -52,7 +57,7 @@ export default function SelectField(props: Props) {
           e.value ? onChange(e.value) : onChange(e.map((c: any) => c.value))
         }
       />
-      <div className={styles.error}>{description}</div>
+     {description && <div className={styles.error}>{description}</div>}
     </div>
   );
 }

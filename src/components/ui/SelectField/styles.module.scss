@@ -1,5 +1,14 @@
 .container {
-  margin-bottom: 25px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-input-label);
 }
 
 .error {

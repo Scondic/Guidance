@@ -36,7 +36,7 @@ export default function Input(props: Props) {
         onChange={onChange}
         {...rest}
       />
-      <div className={styles.error}>{error}</div>
+      {error && <div className={styles.error}>{error}</div>}
     </div>
   )
 }

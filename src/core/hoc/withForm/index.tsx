@@ -13,6 +13,8 @@ import { z } from "zod";
 
 import { Button } from "@/components/ui";
 
+import classes from "./styles.module.scss";
+
 export interface WrappedComponentProps<
   TFieldsValues extends FieldValues = FieldValues,
 > {
@@ -25,10 +27,15 @@ export type WithFormProps = {
   formSubmittedCallback: (data: FieldValues) => void;
 };
 
+export interface WithFormSettingsProps {
+  resolver: z.infer<z.Schema<any, any>>;
+  buttonText?: string;
+}
+
 const withForm =
   <FormFields extends FieldValues = FieldValues>(
     WrappedComponent: ElementType,
-    resolver: z.infer<z.Schema<any, any>>,
+    { resolver, buttonText = 'Отправить' }: WithFormSettingsProps,
   ) =>
     // eslint-disable-next-line react/display-name
     (props: WithFormProps) => {
@@ -45,12 +52,14 @@ const withForm =
       };
 
       return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <WrappedComponent
             errors={errors}
             control={control}
           />
-          <Button type={"submit"}>Submit</Button>
+          <div className={classes.button}>
+            <Button type={"submit"}>{ buttonText }</Button>
+          </div>
         </form>
       );
     };

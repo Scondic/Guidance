@@ -5,24 +5,26 @@ import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
 import { schema } from "./schema";
 import { opinionLeaders, optionsRoles } from "./static";
 
-import styles from './styles.module.scss'
+import classes from './styles.module.scss';
 
 export function MeetingForm(props: WrappedComponentProps) {
   return (
-    <>
-      <InputField
-        control={props.control}
-        inputName={"meetingName"}
-        inputLabel={"Название мероприятия"}
-      />
-      <InputField
-        control={props.control}
-        inputName={"meetingLink"}
-        inputLabel={"Постоянная ссылка"}
-        readOnly={true}
-        defaultValue={"https://campweek.aozol.ru/"}
-      />
-      <div className={styles.container}>
+    <section className={classes.form}>
+      <div className={classes.containerRow}>
+        <InputField
+          control={props.control}
+          inputName={"meetingName"}
+          inputLabel={"Название мероприятия"}
+        />
+        <InputField
+          control={props.control}
+          inputName={"meetingLink"}
+          inputLabel={"Постоянная ссылка"}
+          readOnly={true}
+          defaultValue={"https://campweek.aozol.ru/"}
+        />
+      </div>
+      <div className={classes.containerRow}>
         <InputField
           control={props.control}
           inputName={"meetingDate"}
@@ -39,13 +41,19 @@ export function MeetingForm(props: WrappedComponentProps) {
         />
         <InputField
           control={props.control}
-          inputName={"meetingStart"}
+          inputName={"meetingEnd"}
           inputLabel={"Время окончания"}
           inputType={"time"}
           defaultValue={""}
         />
       </div>
-      <div className={styles.containerLink}>
+      <div className={classes.containerColumn}>
+        <InputField
+          control={props.control}
+          inputName={"meetingAddLink"}
+          inputLabel={"Ссылка на доп.регистрацию"}
+          defaultValue={""}
+        />
         <InputField
           control={props.control}
           inputName={"isRegNeeded"}
@@ -53,14 +61,7 @@ export function MeetingForm(props: WrappedComponentProps) {
           inputType={"checkbox"}
           defaultValue={""}
         />
-        <InputField
-          control={props.control}
-          inputName={"meetingAddLink"}
-          inputLabel={"Ссылка на доп.регистрацию"}
-          defaultValue={""}
-        />
       </div>
-      <div className={styles.container}>
         <InputField
           control={props.control}
           inputName={"meetingDsc"}
@@ -75,18 +76,12 @@ export function MeetingForm(props: WrappedComponentProps) {
           defaultValue={""}
           inputType={"textarea"}
         />
-      </div>
-      <MultipleSelectField
+      <div className={classes.containerRow}>
+        <MultipleSelectField
         control={props.control}
         selectName={"meetingSpeakers"}
         selectLabel={"Спикеры"}
         selectOptions={opinionLeaders}
-      />
-      <InputField
-        control={props.control}
-        inputName={"meetingSpeakerInfo"}
-        inputLabel={"Регалии спикера"}
-        defaultValue={""}
       />
       <MultipleSelectField
         control={props.control}
@@ -94,14 +89,23 @@ export function MeetingForm(props: WrappedComponentProps) {
         selectLabel={"Аудитория"}
         selectOptions={optionsRoles}
       />
+      </div>
+      <InputField
+        control={props.control}
+        inputName={"meetingSpeakerInfo"}
+        inputLabel={"Регалии спикера"}
+        defaultValue={""}
+      />
       <InputField
         control={props.control}
         inputName={"meetingNotes"}
         inputLabel={"Заметки (для админа)"}
         defaultValue={""}
       />
-    </>
+    </section>
   )
 }
 
-export default withForm(MeetingForm, schema)
+export default withForm(MeetingForm, {
+  resolver: schema, buttonText: "Создать мероприятие"
+});

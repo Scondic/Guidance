@@ -6,8 +6,7 @@ import {
 import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
 
 import { schema } from "./schema";
-import { optionsRoles, optionsMeetings } from "./static";
-import { mockUser } from './static';
+import { mockUser, optionsMeetings, optionsRoles } from "./static";
 
 
 export function UserForm(props: WrappedComponentProps) {
