@@ -64,4 +64,6 @@ export function UserForm(props: WrappedComponentProps) {
     </>)
 }
 
-export default withForm(UserForm, schema);
+export default withForm(UserForm, {
+  resolver: schema
+});
