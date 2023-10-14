@@ -2,7 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 
-import { apiBaseUrl } from '@/core/constants';
+import { Button } from '@/components/ui';
+import { API_BASE_URL, API_VERSION } from '@/core/constants';
 
 import styles from './styles.module.css';
 
@@ -10,10 +11,10 @@ export const ButtonAuthorization = () => {
   const router = useRouter()
 
   const redirectAuthorization = () => {
-    router.push(`${apiBaseUrl}/vk-auth-start`)
+    router.push(`${API_BASE_URL}/api/${API_VERSION}/user/vk_auth_start`)
   }
 
   return (
-    <button className={styles.authorization} onClick={redirectAuthorization}>Войти через ВК</button>
+    <Button className={styles.authorization} onClick={redirectAuthorization}>Войти через ВК</Button>
   )
 }

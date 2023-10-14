@@ -55,4 +55,6 @@ const SettingsUser = (props: WrappedComponentProps<FormType>) => {
   );
 };
 
-export default withForm<FormType>(SettingsUser, SettingUserResolver);
+export default withForm<FormType>(SettingsUser, { 
+  resolver: SettingUserResolver 
+});

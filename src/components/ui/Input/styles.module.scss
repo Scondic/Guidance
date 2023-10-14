@@ -2,21 +2,22 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  margin-bottom: 25px;
+  row-gap: 4px;
 }
 
 .input {
-  padding: 20px;
+  font-weight: 400;
+  font-size: 12px;
+  font-family: inherit;
+  height: 44px;
+  padding: 9px 11px;
   border: 1px solid #cccccc;
   border-radius: 5px;
 
-  font: inherit;
-  line-height: 24px;
-
   &:focus {
     outline: none;
-    border: 1px solid #2684FF;
-    box-shadow: 0 0 0 1px #2684FF;
+    border: 1px solid #2684ff;
+    box-shadow: 0 0 0 1px #2684ff;
   }
 
   &:read-only:focus {
@@ -27,26 +28,30 @@
 }
 
 .inputCheckbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   appearance: none;
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background-color: #ffffff;
+  cursor: pointer;
 
   &:checked::before {
-    content: '';
+    content: "";
     position: absolute;
     height: 16px;
     width: 16px;
     background-color: #cccccc;
-    top: 12px;
-    left: 12px;
     border-radius: 2px;
   }
 }
 
 .label {
-  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-input-label);
 }
 
 .error {

@@ -1,9 +1,17 @@
-.container {
+.form {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  row-gap: 20px;
 }
 
-.containerLink {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+.containerRow {
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+}
+
+.containerColumn {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
 }

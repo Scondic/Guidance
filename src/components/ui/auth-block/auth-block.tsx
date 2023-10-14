@@ -1,6 +1,6 @@
 import { ButtonAuthorization } from '@/components/modules/ButtonAuthorization/ButtonAuthorization';
 
-import styles from './styles.module.css';
+import classes from './styles.module.css';
 
 type Props = {
   isSignedIn: boolean;
@@ -14,31 +14,31 @@ export default function AuthBlock(props: Props) {
 
   if (isSignedIn) {
     AuthText = (
-      <div className={styles.infoAuth}>
-        <p className={styles.infoText}>Проверьте, что можете получать принимать сообщения от <a href="#">чат-бота группы</a> для получения уведомлений</p>
-        <a className={styles.checkLink} href="#">Проверить</a>
+      <div className={classes.infoAuth}>
+        <p className={classes.infoText}>Проверьте, что можете получать принимать сообщения от <a href="#">чат-бота группы</a> для получения уведомлений</p>
+        <a className={classes.checkLink} href="#">Проверить</a>
       </div>);
     AuthLink = (
-      <div className={styles.checkLinkBox}>
-        <a className={styles.orgAuthLink} href="#">Выход</a>
+      <div className={classes.checkLinkBox}>
+        <a className={classes.orgAuthLink} href="#">Выход</a>
       </div>);
   } else {
     AuthText = (
-      <div className={styles.infoNoAuth}>
-        <p className={styles.infoText}>Чтобы зарегистрироваться на мероприятия необходимо авторизоваться через ВКонтакте</p>
+      <div className={classes.infoNoAuth}>
+        <p className={classes.infoText}>Чтобы зарегистрироваться на мероприятия необходимо авторизоваться через ВКонтакте</p>
         <ButtonAuthorization />
       </div>
     );
     AuthLink = (
-      <div className={styles.checkLinkBox}>
-        <a className={styles.orgAuthLink} href="#">Вход для админов</a>
+      <div className={classes.checkLinkBox}>
+        <a className={classes.orgAuthLink} href="#">Вход для админов</a>
       </div>);
   }
 
   return (
-    <article style={{ width: 'min-content' }}>
+    <aside className={classes.authorization}>
       {AuthText}
       {AuthLink}
-    </article>
+    </aside>
   )
 }

@@ -8,7 +8,7 @@ type Props = {
   link: string
 } & ComponentProps<"a">;
 
-export default function LinkItem(props: Props) {
+export const LinkItem = (props: Props) => {
   const { children, link } = props;
   return (
     <Link className={styles.Link} href={link} >

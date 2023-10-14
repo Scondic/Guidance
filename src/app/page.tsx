@@ -1,6 +1,4 @@
-"use client";
-import { Banner } from "@/components/ui";
-import LinkItem from "@/components/ui/Link/Link";
+import { Banner, Link } from "@/components/ui";
 
 import styles from "./styles.module.scss";
 
@@ -19,10 +17,10 @@ export default function Home() {
         fullName={"Иванов Иван Иванович"}
         typeEvent={"Начинающие вожатые"}
       />
-      <LinkItem
+      <Link
         link={'/meeting'}>
         Добавить мероприятие
-      </LinkItem>
+      </Link>
     </main>
   );
 }
