@@ -1,12 +1,10 @@
-"use client";
-
 import { FieldValues } from "react-hook-form";
 
 import UserForm from "@/feature/UserForm/UserForm";
 
 export default function AccountScreen() {
-  const formSubmittedCallback = (formData: FieldValues) => {
-    // eslint-disable-next-line no-console
+  const formSubmittedCallback = async (formData: FieldValues) => {
+    "use server";
     console.log(formData);
   };
 

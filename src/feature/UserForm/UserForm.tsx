@@ -3,31 +3,33 @@
 import InputField from "@/components/ui/Input/Form/InputField";
 import { MultipleSelectField, SingleSelectField } from "@/components/ui/SelectField";
 import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
-import { useUserById } from "@/core/hooks";
+import { useAccountCookies, useUserById } from "@/core/hooks";
 
 import { schema } from "./schema";
 import { optionsMeetings, optionsRoles } from "./static";
 
 export function UserForm(props: WrappedComponentProps) {
-  const { data: user, isLoading, isError } = useUserById(1);
+  const { account } = useAccountCookies();
+
+  const { data, isLoading, isError } = useUserById(parseInt(account.sub));
 
   return (
     <>
       {isLoading && <h5>Загрузка данных...</h5>}
       {isError && <h5>При загрузке данных произошла ошибка</h5>}
-      {user && (
+      {data && (
         <>
           <InputField
             control={props.control}
             inputName={"firstName"}
             inputLabel={"Имя"}
-            defaultValue={user.first_name}
+            defaultValue={data.first_name}
           />
           <InputField
             control={props.control}
             inputName={"lastName"}
             inputLabel={"Фамилия"}
-            defaultValue={user.last_name}
+            defaultValue={data.last_name}
           />
           <SingleSelectField
             control={props.control}
@@ -38,20 +40,20 @@ export function UserForm(props: WrappedComponentProps) {
               { value: "1", label: "Женский" },
               { value: "2", label: "Мужской" },
             ]}
-            defaultValue={user.sex.toString()}
+            defaultValue={data.sex.toString()}
           />
           <InputField
             control={props.control}
             inputName={"birthDate"}
             inputLabel={"Дата рождения"}
             inputType={"date"}
-            defaultValue={user.bdate}
+            defaultValue={data.bdate}
           />
           <InputField
             control={props.control}
             inputName={"city"}
             inputLabel={"Город проживания"}
-            defaultValue={user.city}
+            defaultValue={data.city}
           />
           <MultipleSelectField
             control={props.control}

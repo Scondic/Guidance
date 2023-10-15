@@ -1,9 +1,13 @@
+import { parseCookies } from "nookies";
+
 import { SelectOption } from "@/components/ui/SelectField/SelectField";
 
-export const filterOptions = (
-  options: SelectOption[],
-  selectedValues?: string[],
-) => {
+const cookies = parseCookies();
+
+export const accessToken = cookies["access_token"];
+export const refreshToken = cookies["refresh_token"];
+
+export const filterOptions = (options: SelectOption[], selectedValues?: string[]) => {
   if (!selectedValues) {
     return [];
   }
