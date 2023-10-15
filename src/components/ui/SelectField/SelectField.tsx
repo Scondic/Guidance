@@ -62,6 +62,7 @@ const SelectField = (props: Props, ref: Ref<SelectInstance<SelectOption>> | unde
         placeholder={placeholder}
         defaultValue={defaultValue}
         value={props.options.find((c) => c.value === value)}
+        /* eslint-disable @typescript-eslint/ban-ts-comment */
         onChange={(option, meta) =>
           isSingleFieldValues(option)
             ? // @ts-ignore
