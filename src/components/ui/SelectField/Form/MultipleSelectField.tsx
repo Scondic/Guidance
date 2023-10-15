@@ -1,10 +1,4 @@
-import {
-  Control,
-  FieldPath,
-  FieldPathValue,
-  FieldValues,
-  useController,
-} from "react-hook-form";
+import { Control, FieldPath, FieldPathValue, FieldValues, useController } from "react-hook-form";
 
 import type { SelectOption } from "@/components/ui/SelectField/SelectField";
 

@@ -1,8 +1,8 @@
-import { ComponentProps } from "react";
+import React, { ComponentProps, ForwardedRef } from "react";
 
 import clsx from "clsx";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 type Props = {
   label?: string;
@@ -14,22 +14,17 @@ type Props = {
   defaultValue?: string;
 } & ComponentProps<"input">;
 
-export default function Input(props: Props) {
-  const {
-    label,
-    error,
-    onChange,
-    defaultValue,
-    ...rest
-  } = props;
+const Input = (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
+  const { label, error, onChange, defaultValue, ...rest } = props;
 
   return (
     <div className={styles.container}>
       {label && <label className={styles.label}>{label}</label>}
       <input
+        ref={ref}
         className={clsx(styles.input, {
           [styles.input__error]: !!error,
-          [styles.inputCheckbox]: props.type == 'checkbox',
+          [styles.inputCheckbox]: props.type == "checkbox",
           [styles.readOnly]: props.readOnly,
         })}
         defaultValue={defaultValue}
@@ -38,5 +33,7 @@ export default function Input(props: Props) {
       />
       {error && <div className={styles.error}>{error}</div>}
     </div>
-  )
-}
+  );
+};
+
+export default React.forwardRef(Input);

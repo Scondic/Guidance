@@ -1,6 +1,11 @@
 "use client";
 
+import type { ActionMeta, MultiValue, SelectInstance, SingleValue } from "react-select";
+
+import React, { Ref } from "react";
 import { default as SelectNative } from "react-select";
+
+import { isSingleFieldValues } from "@/core/guards";
 
 import { ChipStyles, ControlStyles } from "./static";
 
@@ -16,11 +21,14 @@ type Props = {
   description?: string;
   value?: string | SelectOption[];
   options: SelectOption[];
-  onChange: (newValue: SelectOption | SelectOption[]) => void;
+  onChange: (
+    newValue: SingleValue<SelectOption> | MultiValue<SelectOption>,
+    actionMeta: ActionMeta<SelectOption>,
+  ) => void;
   defaultValue?: SelectOption[];
 };
 
-export default function SelectField(props: Props) {
+const SelectField = (props: Props, ref: Ref<SelectInstance<SelectOption>> | undefined) => {
   const {
     label,
     placeholder,
@@ -37,15 +45,16 @@ export default function SelectField(props: Props) {
     <div className={styles.container}>
       {label && <label className={styles.label}>{label}</label>}
       <SelectNative
+        ref={ref}
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
-            ...ControlStyles
+            ...ControlStyles,
           }),
           multiValueLabel: (baseStyles) => ({
             ...baseStyles,
-            ...ChipStyles
-          })
+            ...ChipStyles,
+          }),
         }}
         isMulti={isMulti}
         isSearchable={isSearchable}
@@ -53,11 +62,19 @@ export default function SelectField(props: Props) {
         placeholder={placeholder}
         defaultValue={defaultValue}
         value={props.options.find((c) => c.value === value)}
-        onChange={(e: any) =>
-          e.value ? onChange(e.value) : onChange(e.map((c: any) => c.value))
+        onChange={(option, meta) =>
+          isSingleFieldValues(option)
+            ? // @ts-ignore
+              onChange(option?.value, meta)
+            : onChange(
+                option.map((c: any) => c.value),
+                meta,
+              )
         }
       />
-     {description && <div className={styles.error}>{description}</div>}
+      {description && <div className={styles.error}>{description}</div>}
     </div>
   );
-}
+};
+
+export default React.forwardRef(SelectField);
