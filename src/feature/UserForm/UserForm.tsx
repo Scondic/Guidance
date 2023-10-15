@@ -1,69 +1,78 @@
+"use client";
+
 import InputField from "@/components/ui/Input/Form/InputField";
-import {
-  MultipleSelectField,
-  SingleSelectField,
-} from "@/components/ui/SelectField";
+import { MultipleSelectField, SingleSelectField } from "@/components/ui/SelectField";
 import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
+import { useUserById } from "@/core/hooks";
 
 import { schema } from "./schema";
-import { mockUser, optionsMeetings, optionsRoles } from "./static";
-
+import { optionsMeetings, optionsRoles } from "./static";
 
 export function UserForm(props: WrappedComponentProps) {
+  const { data: user, isLoading, isError } = useUserById(1);
+
   return (
     <>
-      <InputField
-        control={props.control}
-        inputName={"firstName"}
-        inputLabel={"Имя"}
-        defaultValue={mockUser.firstName}
-      />
-      <InputField
-        control={props.control}
-        inputName={"lastName"}
-        inputLabel={"Фамилия"}
-        defaultValue={mockUser.lastName}
-      />
-      <SingleSelectField
-        control={props.control}
-        selectName={"sex"}
-        selectLabel={"Пол"}
-        selectOptions={[
-          { value: "2", label: "Мужской" },
-          { value: "1", label: "Женский" },
-        ]}
-        defaultValue={mockUser.sex}
-      />
-      <InputField
-        control={props.control}
-        inputName={"birthDate"}
-        inputLabel={"Дата рождения"}
-        inputType={"date"}
-        defaultValue={mockUser.birthDate}
-      />
-      <InputField
-        control={props.control}
-        inputName={"city"}
-        inputLabel={"Город проживания"}
-        defaultValue={mockUser.city}
-      />
-      <MultipleSelectField
-        control={props.control}
-        selectName={"roles"}
-        selectLabel={"Роль"}
-        selectOptions={optionsRoles}
-        defaultValue={mockUser.roles}
-      />
-      <MultipleSelectField
-        control={props.control}
-        selectName={"meetings"}
-        selectLabel={"Мероприятия"}
-        selectOptions={optionsMeetings}
-        defaultValue={mockUser.meetings}
-      />
-    </>)
+      {isLoading && <h5>Загрузка данных...</h5>}
+      {isError && <h5>При загрузке данных произошла ошибка</h5>}
+      {user && (
+        <>
+          <InputField
+            control={props.control}
+            inputName={"firstName"}
+            inputLabel={"Имя"}
+            defaultValue={user.first_name}
+          />
+          <InputField
+            control={props.control}
+            inputName={"lastName"}
+            inputLabel={"Фамилия"}
+            defaultValue={user.last_name}
+          />
+          <SingleSelectField
+            control={props.control}
+            selectName={"sex"}
+            selectLabel={"Пол"}
+            selectOptions={[
+              { value: "0", label: "Не указан" },
+              { value: "1", label: "Женский" },
+              { value: "2", label: "Мужской" },
+            ]}
+            defaultValue={user.sex.toString()}
+          />
+          <InputField
+            control={props.control}
+            inputName={"birthDate"}
+            inputLabel={"Дата рождения"}
+            inputType={"date"}
+            defaultValue={user.bdate}
+          />
+          <InputField
+            control={props.control}
+            inputName={"city"}
+            inputLabel={"Город проживания"}
+            defaultValue={user.city}
+          />
+          <MultipleSelectField
+            control={props.control}
+            selectName={"roles"}
+            selectLabel={"Роль"}
+            selectOptions={optionsRoles}
+            defaultValue={["counselor", "designer"]}
+          />
+          <MultipleSelectField
+            control={props.control}
+            selectName={"meetings"}
+            selectLabel={"Мероприятия"}
+            selectOptions={optionsMeetings}
+            defaultValue={["game"]}
+          />
+        </>
+      )}
+    </>
+  );
 }
 
 export default withForm(UserForm, {
-  resolver: schema
+  resolver: schema,
 });
