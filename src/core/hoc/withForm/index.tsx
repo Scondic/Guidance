@@ -15,9 +15,9 @@ export interface WrappedComponentProps<TFieldsValues extends FieldValues = Field
   errors: FieldErrors<FieldValues>;
 }
 
-export type WithFormProps = {
+export interface WithFormProps {
   formSubmittedCallback: (data: FieldValues) => void;
-};
+}
 
 export interface WithFormSettingsProps {
   resolver: z.infer<z.Schema<any, any>>;

@@ -1,13 +1,12 @@
-import InputField from "@/components/ui/Input/Form/InputField";
-import { MultipleSelectField } from "@/components/ui/SelectField";
-import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
+import { InputField, MultipleSelectField } from "@/components/ui/form";
+import { withForm, WrappedComponentProps } from "@/core/hoc";
 
 import { schema } from "./schema";
 import { opinionLeaders, optionsRoles } from "./static";
 
-import classes from './styles.module.scss';
+import classes from "./styles.module.scss";
 
-export function MeetingForm(props: WrappedComponentProps) {
+export function Index(props: WrappedComponentProps) {
   return (
     <section className={classes.form}>
       <div className={classes.containerRow}>
@@ -62,33 +61,33 @@ export function MeetingForm(props: WrappedComponentProps) {
           defaultValue={""}
         />
       </div>
-        <InputField
-          control={props.control}
-          inputName={"meetingDsc"}
-          inputLabel={"Короткое описание"}
-          defaultValue={""}
-          inputType={"textarea"}
-        />
-        <InputField
-          control={props.control}
-          inputName={"meetingAddInfo"}
-          inputLabel={"Дополнительная информация"}
-          defaultValue={""}
-          inputType={"textarea"}
-        />
+      <InputField
+        control={props.control}
+        inputName={"meetingDsc"}
+        inputLabel={"Короткое описание"}
+        defaultValue={""}
+        inputType={"textarea"}
+      />
+      <InputField
+        control={props.control}
+        inputName={"meetingAddInfo"}
+        inputLabel={"Дополнительная информация"}
+        defaultValue={""}
+        inputType={"textarea"}
+      />
       <div className={classes.containerRow}>
         <MultipleSelectField
-        control={props.control}
-        selectName={"meetingSpeakers"}
-        selectLabel={"Спикеры"}
-        selectOptions={opinionLeaders}
-      />
-      <MultipleSelectField
-        control={props.control}
-        selectName={"meetingTarget"}
-        selectLabel={"Аудитория"}
-        selectOptions={optionsRoles}
-      />
+          control={props.control}
+          selectName={"meetingSpeakers"}
+          selectLabel={"Спикеры"}
+          selectOptions={opinionLeaders}
+        />
+        <MultipleSelectField
+          control={props.control}
+          selectName={"meetingTarget"}
+          selectLabel={"Аудитория"}
+          selectOptions={optionsRoles}
+        />
       </div>
       <InputField
         control={props.control}
@@ -103,9 +102,10 @@ export function MeetingForm(props: WrappedComponentProps) {
         defaultValue={""}
       />
     </section>
-  )
+  );
 }
 
-export default withForm(MeetingForm, {
-  resolver: schema, buttonText: "Создать мероприятие"
+export default withForm(Index, {
+  resolver: schema,
+  buttonText: "Создать мероприятие",
 });

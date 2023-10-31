@@ -1,7 +1,7 @@
-'use client'
+"use client";
 import { FieldValues } from "react-hook-form";
 
-import MeetingForm from "@/feature/MeetingForm/MeetingForm";
+import MeetingForm from "@/feature/MeetingForm";
 
 export default function UserPage() {
   const formSubmittedCallback = (formData: FieldValues) => {
@@ -9,5 +9,5 @@ export default function UserPage() {
     console.log(formData);
   };
 
-  return <MeetingForm formSubmittedCallback={formSubmittedCallback} />
+  return <MeetingForm formSubmittedCallback={formSubmittedCallback} />;
 }

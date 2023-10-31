@@ -5,16 +5,16 @@ import type { SelectOption } from "@/components/ui/SelectField/SelectField";
 import SelectField from "@/components/ui/SelectField/SelectField";
 import { filterOptions } from "@/core/utils";
 
-type MultipleSelectFieldProps<
+export interface MultipleSelectFieldProps<
   TFieldsValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>,
-> = {
+> {
   control: Control<TFieldsValues>;
   selectName: TFieldName;
   selectLabel: string;
   selectOptions: SelectOption[];
   defaultValue?: FieldPathValue<TFieldsValues, TFieldName>;
-};
+}
 
 const MultipleSelectField = <
   TFieldsValues extends FieldValues = FieldValues,

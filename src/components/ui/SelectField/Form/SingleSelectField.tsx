@@ -4,7 +4,7 @@ import type { SelectOption } from "@/components/ui/SelectField/SelectField";
 
 import SelectField from "@/components/ui/SelectField/SelectField";
 
-interface SingleSelectFieldProps<
+export interface SingleSelectFieldProps<
   TFieldsValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>,
 > {

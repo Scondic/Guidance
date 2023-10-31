@@ -1,12 +1,9 @@
 "use client";
 
-import { SettingUserResolver } from "@/components/modules/static";
-import InputField from "@/components/ui/Input/Form/InputField";
-import {
-  MultipleSelectField,
-  SingleSelectField,
-} from "@/components/ui/SelectField";
-import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
+import withForm, { WrappedComponentProps } from "@/hoc/withForm";
+
+import { SettingUserResolver } from "@/components/modules/SettingsUser/static";
+import { InputField, MultipleSelectField, SingleSelectField } from "@/components/ui/form";
 
 type FormType = {
   sex: string;
@@ -55,6 +52,6 @@ const SettingsUser = (props: WrappedComponentProps<FormType>) => {
   );
 };
 
-export default withForm<FormType>(SettingsUser, { 
-  resolver: SettingUserResolver 
+export default withForm<FormType>(SettingsUser, {
+  resolver: SettingUserResolver,
 });
