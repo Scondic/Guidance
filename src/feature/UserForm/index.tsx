@@ -1,14 +1,13 @@
 "use client";
 
-import InputField from "@/components/ui/Input/Form/InputField";
-import { MultipleSelectField, SingleSelectField } from "@/components/ui/SelectField";
-import withForm, { WrappedComponentProps } from "@/core/hoc/withForm";
+import { InputField, MultipleSelectField, SingleSelectField } from "@/components/ui/form";
+import { withForm, WrappedComponentProps } from "@/core/hoc";
 import { useUserById } from "@/core/hooks";
 
 import { schema } from "./schema";
 import { optionsMeetings, optionsRoles } from "./static";
 
-export function UserForm(props: WrappedComponentProps) {
+export function Index(props: WrappedComponentProps) {
   const { data: user, isLoading, isError } = useUserById(1);
 
   return (
@@ -73,6 +72,6 @@ export function UserForm(props: WrappedComponentProps) {
   );
 }
 
-export default withForm(UserForm, {
+export default withForm(Index, {
   resolver: schema,
 });

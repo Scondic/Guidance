@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useUsersAll } from "@/core/hooks";
 import { ROUTES } from "@/core/routes";
 
-const UsersList = () => {
+const Index = () => {
   const { data, isLoading, isError } = useUsersAll();
 
   return (
@@ -18,4 +18,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList;
+export default Index;

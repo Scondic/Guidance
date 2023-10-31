@@ -1,15 +1,9 @@
 import { ComponentProps } from "react";
-import {
-  Control,
-  FieldPath,
-  FieldPathValue,
-  FieldValues,
-  useController,
-} from "react-hook-form";
+import { Control, FieldPath, FieldPathValue, FieldValues, useController } from "react-hook-form";
 
 import Input from "@/components/ui/Input/input";
 
-interface InputFieldProps<
+export interface InputFieldProps<
   TFieldsValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldsValues> = FieldPath<TFieldsValues>,
 > {
@@ -49,4 +43,5 @@ const InputField = <
     />
   );
 };
+
 export default InputField;

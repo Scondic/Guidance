@@ -2,7 +2,7 @@
 
 import { FieldValues } from "react-hook-form";
 
-import UserForm from "@/feature/UserForm/UserForm";
+import UserForm from "@/feature/UserForm";
 
 export default function AccountScreen() {
   const formSubmittedCallback = (formData: FieldValues) => {
